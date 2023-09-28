@@ -1,5 +1,5 @@
 // Referencia al elemento de formulario html
-const formGuardar = document.querySelector("#form-guardar")
+const formGuardar = document.querySelector("#nueva-publicacion")
 
 
 formGuardar.addEventListener('submit', async (e) => {
@@ -22,6 +22,6 @@ formGuardar.addEventListener('submit', async (e) => {
     const data = await response.json();
 
     alert(data.msg);
-    location.href = "/admin/publicaciones"
+    location.href = "/"
 
 })

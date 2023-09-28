@@ -10,12 +10,21 @@ const {
     obtenerPublicacion
 } = require('../controllers/blog.controllers');
 
+
+// ==================================================
+//         Rutas para reenderizar las vistas
+// ==================================================
+
 router.get('/', (req, res) => {
     res.render('home')
 })
 
 router.get('/publicaciones', (req, res) => {
     res.render('home')
+})
+
+router.get('/nueva-publicacion', (req, res) => {
+    res.render('nueva-publicacion')
 })
 
 // Ruta para devolver la vista para administrar publicaciones

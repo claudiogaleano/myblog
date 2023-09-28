@@ -28,23 +28,32 @@ ctrl.obtenerPublicaciones = async (req, res) => {
         return res.status(500).json({
             msg: "Error al obtener las publicaciones"
         })
-    }
+    } 
 }
 
 ctrl.actualizarPublicacion = async (req, res) => {
+try{
     const { id } = req.params;
 
-    const publicacion = await Publicaciones.findByPk(id)
+    const publicacion = await Publicaciones.findByPk(id);
     publicacion.set(req.body)
 
     await publicacion.save() // Con esta instrucción se guarda en la BD
-
-    res.json({
+    return res.json({
         msg: "Publicación actualizada correctamente"
     })
+}catch (error){
+    console.log(error)
+    return res.status(500).json({
+        msg: "Error al actualizar publicacion"
+    })
+}
+
+
 };
 
 ctrl.eliminarPublicacion = async (req, res) => {
+try{
     const { id } = req.params;
 
     await Publicaciones.destroy({
@@ -53,22 +62,27 @@ ctrl.eliminarPublicacion = async (req, res) => {
         }
     });
 
-    res.json({
+    return res.json({
         msg: "Publicación eliminada correctamente"
     })
-
+}catch (error){
+    console.log(error)
+    return res.status(500).json({
+        msg: "Error al eliminar publicacion"
+    })
+}
 }
 
 ctrl.obtenerPublicacion = async (req, res) => {
-   try {
+try {
     const publicacion = await Publicaciones.findByPk(req.params.id)
     return res.json(publicacion)
-   } catch (error) {
+} catch (error) {
     console.log(error)
     return res.status(500).json({
         msg: "Error al obtener la publicación"
     })
-   }
+}
 }
 
 

@@ -3,9 +3,9 @@ const morgan = require ('morgan')
 const cors = require('cors')
 const ejs = require ('ejs')
 
+
+const port = process.env.PORT || 3000;
 const app = express()
-
-
 
 //MIDDLEWARES
 app.use(morgan('combined')) //con morgan obtenemos informacion del cliente (util para crear base de datos)
@@ -26,5 +26,4 @@ sequelize.authenticate()
 const rutablog = require('./routes/blog.routes');
 app.use(rutablog)
 
-app.listen(3000)
-console.log('Servidor corriendo en puerto ${3000}')
+app.listen(port, () => console.log('Servidor corriendo en http://localhost: ${port}'))
